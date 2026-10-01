@@ -32,7 +32,7 @@ class ShoppingList
     {
         int sum = 0;
 
-        for (int i = 1; i < items.Count; i++)
+        for (int i = 0; i < items.Count; i++)
         {
             sum += items[i].Price;
         }
@@ -77,12 +77,18 @@ class ShoppingList
         try
         {
             File.WriteAllText(path, string.Join("\r\n", lines) + "\r\n");
-        }
-        catch
-        {
+            Console.WriteLine("Listan är sparad.");
         }
 
-        Console.WriteLine("Listan är sparad.");
+        catch (UnauthorizedAccessException)
+        {
+            Console.WriteLine("Listan sparades inte. Filen är skrivskyddad.");
+        }
+
+        catch (IOException)
+        {
+            Console.WriteLine("Listan sparades inte. Det gick inte att skriva till filen.");
+        }
     }
 
     // Reads the file back into the list.

@@ -92,3 +92,55 @@ till:
             Console.WriteLine("\nProdukten är inte i listan");
         }
     }
+
+
+
+```
+
+När jag la till produkter märkte jag att priset är helt fel, så jag fixa det från detta:
+```csharp
+
+    public int Total()
+    {
+        int sum = 0;
+
+        for (int i = 1; i < items.Count; i++)
+        {
+            sum += items[i].Price;
+        }
+
+        return sum;
+    }
+
+till detta:
+
+    public int Total()
+    {
+        int sum = 0;
+
+        for (int i = 0; i < items.Count; i++)
+        {
+            sum += items[i].Price;
+        }
+
+        return sum;
+    }
+```
+Programmet måste börja på 0 för att 0 är första är första nummret, inte 1
+
+
+
+Jag skrev med Claude och den sa till mig att jag ska göra detta:
+```csharp
+
+        catch (UnauthorizedAccessException)
+        {
+            Console.WriteLine("Listan sparades inte. Filen är skrivskyddad.");
+        }
+
+        catch (IOException)
+        {
+            Console.WriteLine("Listan sparades inte. Det gick inte att skriva till filen.");
+        }
+
+Jag skulle göra det för att det gamla catch var tomt och "Listan är sparad." skrevs ut även när det inte gick att spara, så nu skrivs den bara ut när det lyckas och annars får användaren veta att listan inte sparades.
