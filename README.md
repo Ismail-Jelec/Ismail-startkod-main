@@ -43,3 +43,29 @@ till:
         Console.WriteLine("\nDu måste skriva ett tal");
         continue;    
     }
+
+
+Jag ändra också dessa filer:
+
+        int price = int.Parse(Console.ReadLine());
+
+och
+
+        int number = int.Parse(Console.ReadLine());
+
+
+Till detta:
+      
+        if (!int.TryParse(Console.ReadLine(), out int price))
+        {
+            Console.WriteLine("\nDu måste skriva ett tal");
+            continue;
+        }
+
+och
+
+        if (!int.TryParse(Console.ReadLine(), out int number))
+        {
+            Console.WriteLine("\nDu måste skriva ett tal");
+            continue;
+        }
