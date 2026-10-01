@@ -13,7 +13,17 @@ while (true)
     Console.WriteLine("5. Avsluta");
     Console.Write("Välj: ");
 
-    int choice = int.Parse(Console.ReadLine());
+    if(int.TryParse(Console.ReadLine(), out int choice))
+    {
+        
+    }
+
+    else
+    {
+        Console.WriteLine("\nDu måste skriva ett tal");
+        continue;    
+    }
+
 
     if (choice == 1)
     {

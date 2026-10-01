@@ -23,3 +23,23 @@ Jag bytte ut dessa rader:
 Med denna:
         string[] lines = File.ReadAllLines(path);
 
+
+
+Jag testa skriva random kod i panelen när jag kör dotnet run och programmet krashar
+
+Jag ändrade från:
+
+    int choice = int.Parse(Console.ReadLine());
+
+till:
+
+    if(int.TryParse(Console.ReadLine(), out int choice))
+    {
+        
+    }
+
+    else
+    {
+        Console.WriteLine("\nDu måste skriva ett tal");
+        continue;    
+    }
