@@ -81,8 +81,12 @@ class ShoppingList
     // Reads the file back into the list.
     public void Load()
     {
-        string text = File.ReadAllText(path);
-        string[] lines = text.Split('\n');
+        if (!File.Exists(path))
+        {
+            return;
+        }
+
+        string[] lines = File.ReadAllLines(path);
 
         foreach (string line in lines)
         {
