@@ -69,3 +69,26 @@ och
             Console.WriteLine("\nDu måste skriva ett tal");
             continue;
         }
+
+
+Jag märkte att jag kan ta bort vilket tal som helst så jag ändrade metoden "RemoveAt" från:
+
+    public void RemoveAt(int number)
+    {
+        items.RemoveAt(number - 1);
+    }
+
+
+till:
+
+    public void RemoveAt(int number)
+    {
+        if(number >= 1 && number <= items.Count)
+        {
+            items.RemoveAt(number - 1); 
+        }
+        else
+        {
+            Console.WriteLine("\nProdukten är inte i listan");
+        }
+    }
