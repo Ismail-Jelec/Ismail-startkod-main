@@ -36,7 +36,18 @@ while (true)
             Console.WriteLine("\nDu måste skriva ett tal");
             continue;
         }
-        list.Add(new Item(name, price));
+        try
+        {
+            list.Add(new Item(name, price));
+        }
+        catch (ArgumentOutOfRangeException)
+        {
+            Console.WriteLine("\nPriset får inte vara ett negativt nummer");
+        }
+        catch (ArgumentException)
+        {
+            Console.WriteLine("\nNamnet får inte vara tomt");
+        }
     }
     else if (choice == 2)
     {
