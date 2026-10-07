@@ -4,13 +4,19 @@ class ShoppingList
     private List<Item> items = new List<Item>();
     private string path;
 
+    private int budget = 200;
     public ShoppingList(string path)
     {
         this.path = path;
     }
 
     public void Add(Item item)
-    {
+    {     
+        if (Total() + item.Price > budget)
+        {
+            throw new InvalidOperationException("Budgeten överstigs");
+        }
+        
         items.Add(item);
     }
 
@@ -107,4 +113,7 @@ class ShoppingList
             items.Add(new Item(parts[1], int.Parse(parts[0])));
         }
     }
+   
 }
+
+

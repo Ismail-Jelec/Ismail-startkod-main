@@ -48,6 +48,11 @@ while (true)
         {
             Console.WriteLine("\nNamnet får inte vara tomt");
         }
+
+        catch (InvalidOperationException)
+        {
+            Console.WriteLine("\nMax total priset är uppnåt");
+        }
     }
     else if (choice == 2)
     {

@@ -193,3 +193,37 @@ till:
     }
 
 Programmet krashar inte längre.
+
+
+
+Nu la jag till ett budgettak. Det gjorde jag genom att i shopping list ändrade jag Add metoden från:
+
+public void Add(Item item)
+{
+    items.Add(item);
+}
+
+till:
+
+    public void Add(Item item)
+    {     
+        if (Total() + item.Price > budget)
+        {
+            throw new InvalidOperationException("Budgeten överstigs");
+        }
+        
+        items.Add(item);
+    }
+
+Jag kunde välja att lägga return false men jag ville fortsätta med exceptions som i item.cs. Det va också lättare att göra en catch i program.cs eftersom jag bara la till:
+
+        catch (InvalidOperationException)
+        {
+            Console.WriteLine("\nMax total priset är uppnåt");
+        }
+
+Budgeten är 200 kr:
+
+    private int budget = 200;
+
+
