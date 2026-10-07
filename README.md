@@ -234,3 +234,28 @@ Budgeten är 200 kr:
     private int budget = 200;
 
 
+## Klassdiagram
+```mermaid
+classDiagram
+    class Program
+    class ShoppingList {
+        -List~Item~ items
+        -string path
+        -int budget
+        +Add(Item item)
+        +RemoveAt(int number)
+        +Total() int
+        +Find(string name) Item
+        +Print()
+        +Save()
+        +Load()
+    }
+    class Item {
+        +string Name
+        +int Price
+        +Item(string name, int price)
+        +ToString() string
+    }
+    Program --> ShoppingList : använder
+    ShoppingList o-- Item : innehåller
+```
