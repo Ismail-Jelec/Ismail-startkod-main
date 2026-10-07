@@ -8,6 +8,7 @@ Jag hittade det genom att köra koden och läsa felmedelandet.
 
 
 jag körde en debug och hitta detta: [alt text](image.png)
+Felet var att File.ReadAllText kastade FileNotFoundException eftersom Load inte kollade om filen fanns.
 jag fixade felet genom att jag la in detta först i void metoden:
 ```csharp
 
@@ -18,6 +19,8 @@ jag fixade felet genom att jag la in detta först i void metoden:
 
 
 felet i ShoppingList.cs är fortfarande där så jag la in "Console.WriteLine($"[{line}] antal delar: {parts.Length}");" för att se vad som inte funkar
+
+Felet var att filen delades på '\n' men har '\r\n' som radbrytning, så det blev en tom rad sist. Den tomma raden har bara en del när man delar på ';', så parts[1] fanns inte och programmet kraschade med IndexOutOfRangeException.
 
 
 Jag bytte ut dessa rader:
@@ -32,6 +35,8 @@ Med denna:
 
 
 Jag testa skriva random kod i panelen när jag kör dotnet run och programmet krashar
+
+Felet var att int.Parse kastar FormatException när texten inte är ett tal.
 
 Jag ändrade från:
 
@@ -76,6 +81,8 @@ och
         continue;
     }
 
+
+Felet var att ett nummer som inte finns i listan, till exempel 99 eller 0, gav ArgumentOutOfRangeException eftersom RemoveAt inte kollade numret.
 
 Jag märkte att jag kan ta bort vilket tal som helst så jag ändrade metoden "RemoveAt" från:
 
