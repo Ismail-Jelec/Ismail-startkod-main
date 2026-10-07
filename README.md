@@ -1,3 +1,7 @@
+
+DEL 1
+--------------------------------------------------
+
 Första felet som jag hittade va på raden "items.Add(new Item(parts[1], int.Parse(parts[0])));" i filen ShoppingList.cs och på raden "list.Load();" i Program.cs.
 
 Jag hittade det genom att köra koden och läsa felmedelandet.
@@ -144,3 +148,23 @@ Jag skrev med Claude och den sa till mig att jag ska göra detta:
         }
 
 Jag skulle göra det för att det gamla catch var tomt och "Listan är sparad." skrevs ut även när det inte gick att spara, så nu skrivs den bara ut när det lyckas och annars får användaren veta att listan inte sparades.
+
+
+
+DEL 2
+--------------------------------------------------
+
+
+Jag la in detta i item.cs koden:
+
+        if (string.IsNullOrWhiteSpace(name))
+        {
+            throw new ArgumentException("Namnet får inte vara tomt");
+        }
+
+        if (price < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(price), "Priset får inte vara ett negativt nummer");
+        }
+
+Koden ger ett undantag om namnet är tomt eller priset är negativt så att det aldrig skapas en vara med ogiltiga värden. Programmet krashar just nu om man anger fel värden
